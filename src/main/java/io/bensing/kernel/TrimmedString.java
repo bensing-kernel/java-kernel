@@ -1,5 +1,10 @@
 package io.bensing.kernel;
 
+/**
+ * TrimmedString is a value object with removes all spaces from the start and end of a string value.
+ *
+ * @param value The value to trim
+ */
 public class TrimmedString {
 
     private String value;

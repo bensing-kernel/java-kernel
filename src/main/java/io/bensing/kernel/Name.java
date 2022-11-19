@@ -1,5 +1,10 @@
 package io.bensing.kernel;
 
+/**
+ * Name is a value object which generates a valid name string.
+ *
+ * @param name The name value
+ */
 public class Name {
 
     private TrimmedString name;
@@ -11,4 +16,5 @@ public class Name {
     public String getValue() {
         return this.name.getValue();
     }
+
 }

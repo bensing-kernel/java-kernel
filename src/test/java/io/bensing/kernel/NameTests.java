@@ -16,4 +16,5 @@ public class NameTests {
 
         Assertions.assertEquals(surname.getValue(), "Bill");
     }
+
 }
