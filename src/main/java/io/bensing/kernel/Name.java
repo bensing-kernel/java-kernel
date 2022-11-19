@@ -2,13 +2,13 @@ package io.bensing.kernel;
 
 public class Name {
 
-    private String name;
+    private TrimmedString name;
 
     public Name(String name) {
-        this.name = name;
+        this.name = new TrimmedString(name);
     }
 
     public String getValue() {
-        return this.name;
+        return this.name.getValue();
     }
 }
