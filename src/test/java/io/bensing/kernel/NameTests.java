@@ -10,8 +10,8 @@ public class NameTests {
 
     @Test
     @Tag("Small")
-    @DisplayName("Instantiate Surname")
-    public void InstantiateSurname() {
+    @DisplayName("Instantiate Name")
+    public void InstantiateName() {
         var surname = new Name("Bill");
 
         Assertions.assertEquals(surname.getValue(), "Bill");
