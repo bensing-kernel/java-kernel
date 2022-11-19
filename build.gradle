@@ -20,7 +20,7 @@ test {
 }
 
 testlogger {
-    theme 'mocha'
+    theme 'mocha-parallel'
     showPassed true
     showSkipped true
     showFailed true
