@@ -16,4 +16,13 @@ public class NameTests {
         Assertions.assertEquals(surname.getValue(), "Bill");
     }
 
+    @Test
+    @Tag("Small")
+    @DisplayName("Convert null input into empty string")
+    public void NullInputIntoEmptyString() {
+        var surname = new Name(null);
+
+        Assertions.assertEquals(surname.getValue(), "");
+    }
+
 }

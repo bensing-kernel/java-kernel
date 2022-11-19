@@ -10,6 +10,9 @@ public class Name {
     private TrimmedString name;
 
     public Name(String name) {
+        if(name == null) {
+            name = "";
+        }
         this.name = new TrimmedString(name);
     }
 
