@@ -2,11 +2,14 @@ package io.bensing.kernel;
 
 import java.util.regex.Pattern;
 
-public class EmailAddress  {
+public class EmailAddress implements Validatable {
 
     private static final String emailRegex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
     private String emailAddress;
+
+    private boolean isValid = false;
+    private String validationMessage;
 
     /***
      * Creates an Email Address compliant with RFC 5322 standards.
@@ -28,9 +31,27 @@ public class EmailAddress  {
 
     private String validateEmailAddress(String emailAddress) {
         var isValid = EMAIL_PATTERN.matcher(emailAddress).find();
-        // Todo - Update to include .isValid() and validationMessage()
-        // if(!isValid) { throw new IllegalArgumentException(String.format("This is not valid email address '%s'.", emailAddress)); }
+        if (!isValid) {
+            this.setValidationMessage("'" + emailAddress + "' is not a valid email address.");
+        } else {
+            this.setAsValid();
+        }
         return emailAddress;
     }
 
+    private void setAsValid() {
+        this.isValid = true;
+    }
+
+    private void setValidationMessage(String message) {
+        this.validationMessage = message;
+    }
+
+    public boolean IsValid() {
+        return this.isValid;
+    }
+
+    public String ValidationMessage() {
+        return this.validationMessage;
+    }
 }
