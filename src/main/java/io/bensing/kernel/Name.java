@@ -1,14 +1,13 @@
 package io.bensing.kernel;
 
-/**
- * Name is a value object which generates a valid name string.
- *
- * @param name The name value
- */
 public class Name {
 
     private TrimmedString name;
 
+    /**
+     * Name is a value object which generates a valid name string.
+     * @param name The name value
+     */
     public Name(String name) {
         if(name == null) {
             name = "";
