@@ -1,6 +1,5 @@
 package io.bensing.kernel;
 
-// TODO - Create the Validation object to track validation state & Test It
 public class Validation {
 
     private boolean valid;
