@@ -2,7 +2,7 @@ package io.bensing.kernel;
 
 public class Name {
 
-    private TrimmedString name;
+    private CleanString name;
 
     /**
      * Name is a value object which generates a valid name string.
@@ -12,7 +12,7 @@ public class Name {
         if(name == null) {
             name = "";
         }
-        this.name = new TrimmedString(name);
+        this.name = new CleanString(name);
     }
 
     public String getValue() {

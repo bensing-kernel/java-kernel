@@ -23,7 +23,7 @@ public class EmailAddress implements Validatable {
     }
 
     private void setEmailAddress(String emailAddress) {
-        var trimmedEmail = new TrimmedString(emailAddress);
+        var trimmedEmail = new CleanString(emailAddress);
         this.emailAddress = this.validateEmailAddress(trimmedEmail.getValue());
     }
 
