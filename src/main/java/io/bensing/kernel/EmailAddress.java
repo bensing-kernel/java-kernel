@@ -18,7 +18,7 @@ public class EmailAddress implements Validatable {
         this.setEmailAddress(emailAddress);
     }
 
-    public String getValue() {
+    public String toString() {
         return this.emailAddress;
     }
 

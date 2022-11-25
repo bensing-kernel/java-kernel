@@ -12,7 +12,7 @@ public class EmailAddressTests {
     @DisplayName("Successfully instantiate EmailAddress")
     public void InstantiateEmailAddress() {
         var emailAddress = new EmailAddress("some.person@gmail.com");
-        Assertions.assertEquals("some.person@gmail.com", emailAddress.getValue());
+        Assertions.assertEquals("some.person@gmail.com", emailAddress.toString());
         Assertions.assertTrue(emailAddress.IsValid());
     }
 
