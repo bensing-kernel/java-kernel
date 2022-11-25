@@ -7,7 +7,7 @@ public class EmailAddress implements Validatable {
     private static final String emailRegex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
     private CleanString emailAddress;
-    private final Validation emailValidation = new Validation();
+    private final Validation emailValidation;
 
     /***
      * Creates an Email Address compliant with RFC 5322 standards.
@@ -16,24 +16,11 @@ public class EmailAddress implements Validatable {
      */
     EmailAddress(String emailAddress)  {
         this.setEmailAddress(emailAddress);
-        this.validateEmailAddress(this.emailAddress.toString());
+        this.emailValidation = this.validate(this.emailAddress.toString());
     }
 
     public String toString() {
         return this.emailAddress.toString();
-    }
-
-    private void setEmailAddress(String emailAddress) {
-        this.emailAddress = new CleanString(emailAddress);
-    }
-
-    private void validateEmailAddress(String emailAddress) {
-        var isValid = EMAIL_PATTERN.matcher(emailAddress).find();
-        if (!isValid) {
-            this.emailValidation.setAsInvalid("'" + emailAddress + "' is not a valid email address.");
-        } else {
-            this.emailValidation.setAsValid();
-        }
     }
 
     public boolean IsValid() {
@@ -43,4 +30,21 @@ public class EmailAddress implements Validatable {
     public String ValidationMessage() {
         return this.emailValidation.getValidationMessage();
     }
+
+    private void setEmailAddress(String emailAddress) {
+        this.emailAddress = new CleanString(emailAddress);
+    }
+
+    private Validation validate(String emailAddress) {
+        var isValid = EMAIL_PATTERN.matcher(emailAddress).find();
+        var validation = new Validation();
+        if (!isValid) {
+            validation.setAsInvalid("'" + emailAddress + "' is not a valid email address.");
+        } else {
+            validation.setAsValid();
+        }
+        return validation;
+    }
+
+
 }
