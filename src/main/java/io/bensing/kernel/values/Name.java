@@ -7,7 +7,7 @@ public class Name {
     private CleanString name;
 
     /**
-     * Name is a value object which generates a valid name string.
+     * Name is a value object which generates a single-line string devoid of leading/trailing spaces.
      * @param name The name value
      */
     public Name(String name) {
