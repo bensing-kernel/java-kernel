@@ -16,7 +16,7 @@ public class Name {
     }
 
     public String toString() {
-        return this.name.getValue();
+        return this.name.toString();
     }
 
 }

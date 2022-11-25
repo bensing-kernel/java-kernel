@@ -14,7 +14,7 @@ public class CleanString {
         this.value = this.trim(this.value);
     }
 
-    public String getValue() {
+    public String toString() {
         return this.value;
     }
 

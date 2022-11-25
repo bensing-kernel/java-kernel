@@ -12,7 +12,7 @@ public class CleanStringTests {
     @DisplayName("Successfully clean string by removing the leading and trailing spaces.")
     public void TrimmedString_HappyPath() {
         var string = new CleanString(" Bill ");
-        Assertions.assertEquals(string.getValue(), "Bill");
+        Assertions.assertEquals(string.toString(), "Bill");
     }
 
     @Test
@@ -20,6 +20,6 @@ public class CleanStringTests {
     @DisplayName("Convert null input string into an empty string.")
     public void ConvertNullToEmptyString() {
         var string = new CleanString(null);
-        Assertions.assertEquals(string.getValue(), "");
+        Assertions.assertEquals(string.toString(), "");
     }
 }
