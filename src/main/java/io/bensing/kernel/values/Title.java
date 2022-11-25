@@ -3,15 +3,15 @@ package io.bensing.kernel.values;
 import io.bensing.kernel.CleanString;
 import io.bensing.kernel.interfaces.ValueObject;
 
-public class Name implements ValueObject<String> {
+public class Title implements ValueObject<String> {
 
     private CleanString name;
 
     /**
-     * Name generates a single-line string devoid of leading/trailing spaces.
+     * Title generates a single-line string devoid of leading/trailing spaces.
      * @param name The name value
      */
-    public Name(String name) {
+    public Title(String name) {
         this.name = new CleanString(name);
         this.name = new CleanString(this.removeLineBreaks(this.name.toString()));
     }

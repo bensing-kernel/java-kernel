@@ -2,12 +2,12 @@ package io.bensing.kernel.values;
 
 public class Person {
 
-    private final Name givenName;
-    private final Name surname;
+    private final Title givenName;
+    private final Title surname;
 
     public Person(String givenName, String surname) {
-        this.givenName = new Name(givenName);
-        this.surname = new Name(surname);
+        this.givenName = new Title(givenName);
+        this.surname = new Title(surname);
     }
 
     public String getGivenName() {

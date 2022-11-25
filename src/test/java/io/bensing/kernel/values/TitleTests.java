@@ -5,13 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class NameTests {
+public class TitleTests {
 
     @Test
     @Tag("Small")
     @DisplayName("Instantiate Name")
     public void InstantiateName() {
-        var surname = new Name("Bill");
+        var surname = new Title("Bill");
 
         Assertions.assertEquals(surname.getValue(), "Bill");
     }
@@ -20,7 +20,7 @@ public class NameTests {
     @Tag("Small")
     @DisplayName("Convert null input into empty string")
     public void NullInputIntoEmptyString() {
-        var surname = new Name(null);
+        var surname = new Title(null);
 
         Assertions.assertEquals(surname.getValue(), "");
     }
@@ -29,7 +29,7 @@ public class NameTests {
     @Tag("Small")
     @DisplayName("Remove all line breaks from string")
     public void RemoveLineBreaks() {
-        var surname = new Name("Two\nWords\r");
+        var surname = new Title("Two\nWords\r");
 
         Assertions.assertEquals("TwoWords", surname.getValue());
     }
