@@ -11,7 +11,7 @@ public class CleanString {
     public CleanString(String value) {
         this.value = value;
         this.value = this.fixNullString(this.value);
-        this.value = this.trim(this.value);
+        this.value = this.value.trim();
     }
 
     public String toString() {
@@ -21,7 +21,5 @@ public class CleanString {
     private String fixNullString(String value) {
         return value == null ? "" : value;
     }
-    private String trim(String value) {
-        return value.trim();
-    }
+
 }
