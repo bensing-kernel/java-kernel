@@ -4,10 +4,11 @@ import io.bensing.kernel.CleanString;
 import io.bensing.kernel.Validation;
 import io.bensing.kernel.interfaces.Comparable;
 import io.bensing.kernel.interfaces.Validatable;
+import io.bensing.kernel.interfaces.ValueObject;
 
 import java.util.regex.Pattern;
 
-public class EmailAddress implements Validatable, Comparable<EmailAddress> {
+public class EmailAddress implements ValueObject<String>, Validatable, Comparable<EmailAddress> {
 
     private static final String emailRegex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
@@ -30,9 +31,9 @@ public class EmailAddress implements Validatable, Comparable<EmailAddress> {
         return this.emailValidation.getValidationMessage();
     }
     public boolean Equals(EmailAddress email) {
-        return this.emailAddress.toString().equals(email.toString());
+        return this.emailAddress.toString().equals(email.getValue());
     }
-    public String toString() {
+    public String getValue() {
         return this.emailAddress.toString();
     }
     private void setEmailAddress(String emailAddress) {
