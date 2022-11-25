@@ -1,7 +1,5 @@
 package io.bensing.kernel.values;
 
-import io.bensing.kernel.values.Name;
-
 public class Person {
 
     private final Name givenName;
@@ -13,11 +11,11 @@ public class Person {
     }
 
     public String getGivenName() {
-        return this.givenName.toString();
+        return this.givenName.getValue();
     }
 
     public String getSurname() {
-        return this.surname.toString();
+        return this.surname.getValue();
     }
 
     public String getFullName() {

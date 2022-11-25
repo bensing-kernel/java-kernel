@@ -1,6 +1,5 @@
 package io.bensing.kernel.values;
 
-import io.bensing.kernel.values.Name;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -14,7 +13,7 @@ public class NameTests {
     public void InstantiateName() {
         var surname = new Name("Bill");
 
-        Assertions.assertEquals(surname.toString(), "Bill");
+        Assertions.assertEquals(surname.getValue(), "Bill");
     }
 
     @Test
@@ -23,7 +22,7 @@ public class NameTests {
     public void NullInputIntoEmptyString() {
         var surname = new Name(null);
 
-        Assertions.assertEquals(surname.toString(), "");
+        Assertions.assertEquals(surname.getValue(), "");
     }
 
     @Test
@@ -32,7 +31,7 @@ public class NameTests {
     public void RemoveLineBreaks() {
         var surname = new Name("Two\nWords\r");
 
-        Assertions.assertEquals("TwoWords", surname.toString());
+        Assertions.assertEquals("TwoWords", surname.getValue());
     }
 
 }

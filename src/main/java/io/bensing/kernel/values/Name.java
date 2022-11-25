@@ -1,8 +1,9 @@
 package io.bensing.kernel.values;
 
 import io.bensing.kernel.CleanString;
+import io.bensing.kernel.interfaces.ValueObject;
 
-public class Name {
+public class Name implements ValueObject<String> {
 
     private CleanString name;
 
@@ -14,7 +15,7 @@ public class Name {
         this.name = new CleanString(name);
         this.name = new CleanString(this.removeLineBreaks(this.name.toString()));
     }
-    public String toString() {
+    public String getValue() {
         return this.name.toString();
     }
     private String removeLineBreaks(String name) {
