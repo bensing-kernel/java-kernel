@@ -13,7 +13,7 @@ public class NameTests {
     public void InstantiateName() {
         var surname = new Name("Bill");
 
-        Assertions.assertEquals(surname.getValue(), "Bill");
+        Assertions.assertEquals(surname.toString(), "Bill");
     }
 
     @Test
@@ -22,7 +22,7 @@ public class NameTests {
     public void NullInputIntoEmptyString() {
         var surname = new Name(null);
 
-        Assertions.assertEquals(surname.getValue(), "");
+        Assertions.assertEquals(surname.toString(), "");
     }
 
 }

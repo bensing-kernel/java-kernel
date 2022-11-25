@@ -11,11 +11,11 @@ public class Person {
     }
 
     public String getGivenName() {
-        return this.givenName.getValue();
+        return this.givenName.toString();
     }
 
     public String getSurname() {
-        return this.surname.getValue();
+        return this.surname.toString();
     }
 
     public String getFullName() {
