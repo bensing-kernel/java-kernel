@@ -1,5 +1,7 @@
 package io.bensing.kernel;
 
+import io.bensing.kernel.interfaces.Validatable;
+
 import java.util.regex.Pattern;
 
 public class EmailAddress implements Validatable {
