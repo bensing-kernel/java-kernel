@@ -1,5 +1,7 @@
-package io.bensing.kernel;
+package io.bensing.kernel.values;
 
+import io.bensing.kernel.CleanString;
+import io.bensing.kernel.Validation;
 import io.bensing.kernel.interfaces.Validatable;
 
 import java.util.regex.Pattern;
@@ -16,7 +18,7 @@ public class EmailAddress implements Validatable {
      * Reference: <a href="https://howtodoinjava.com/regex/java-regex-validate-email-address/">Java Regex Validate Email Address</a>
      * @param emailAddress the input email address
      */
-    EmailAddress(String emailAddress)  {
+    public EmailAddress(String emailAddress)  {
         this.setEmailAddress(emailAddress);
         this.emailValidation = this.validate(this.emailAddress.toString());
     }

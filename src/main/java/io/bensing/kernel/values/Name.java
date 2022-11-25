@@ -1,4 +1,6 @@
-package io.bensing.kernel;
+package io.bensing.kernel.values;
+
+import io.bensing.kernel.CleanString;
 
 public class Name {
 

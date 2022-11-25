@@ -1,5 +1,6 @@
 package io.bensing.kernel;
 
+import io.bensing.kernel.values.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

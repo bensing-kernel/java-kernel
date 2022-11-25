@@ -1,11 +1,13 @@
-package io.bensing.kernel;
+package io.bensing.kernel.values;
+
+import io.bensing.kernel.values.Name;
 
 public class Person {
 
     private final Name givenName;
     private final Name surname;
 
-    Person(String givenName, String surname) {
+    public Person(String givenName, String surname) {
         this.givenName = new Name(givenName);
         this.surname = new Name(surname);
     }

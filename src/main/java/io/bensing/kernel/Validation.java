@@ -5,7 +5,7 @@ public class Validation {
     private boolean valid;
     private String message = "";
 
-    Validation() { }
+    public Validation() { }
 
     public void setAsValid() {
         this.message = "";
