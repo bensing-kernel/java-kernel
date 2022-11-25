@@ -2,21 +2,23 @@ package io.bensing.kernel;
 
 public class Name {
 
-    private final CleanString name;
+    private CleanString name;
 
     /**
      * Name is a value object which generates a valid name string.
      * @param name The name value
      */
     public Name(String name) {
-        if(name == null) {
-            name = "";
-        }
         this.name = new CleanString(name);
+        this.name = new CleanString(this.removeLineBreaks(this.name.toString()));
     }
-
     public String toString() {
         return this.name.toString();
+    }
+    private String removeLineBreaks(String name) {
+        name = name.replace("\n", "");
+        name = name.replace("\r", "");
+        return name;
     }
 
 }

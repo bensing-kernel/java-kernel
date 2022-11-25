@@ -25,4 +25,13 @@ public class NameTests {
         Assertions.assertEquals(surname.toString(), "");
     }
 
+    @Test
+    @Tag("Small")
+    @DisplayName("Remove all line breaks from string")
+    public void RemoveLineBreaks() {
+        var surname = new Name("Two\nWords\r");
+
+        Assertions.assertEquals("TwoWords", surname.toString());
+    }
+
 }
