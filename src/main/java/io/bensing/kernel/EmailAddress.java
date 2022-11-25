@@ -6,7 +6,7 @@ public class EmailAddress implements Validatable {
 
     private static final String emailRegex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
-    private String emailAddress;
+    private CleanString emailAddress;
     private final Validation emailValidation = new Validation();
 
     /***
@@ -16,25 +16,24 @@ public class EmailAddress implements Validatable {
      */
     EmailAddress(String emailAddress)  {
         this.setEmailAddress(emailAddress);
+        this.validateEmailAddress(this.emailAddress.toString());
     }
 
     public String toString() {
-        return this.emailAddress;
+        return this.emailAddress.toString();
     }
 
     private void setEmailAddress(String emailAddress) {
-        var trimmedEmail = new CleanString(emailAddress);
-        this.emailAddress = this.validateEmailAddress(trimmedEmail.toString());
+        this.emailAddress = new CleanString(emailAddress);
     }
 
-    private String validateEmailAddress(String emailAddress) {
+    private void validateEmailAddress(String emailAddress) {
         var isValid = EMAIL_PATTERN.matcher(emailAddress).find();
         if (!isValid) {
             this.emailValidation.setAsInvalid("'" + emailAddress + "' is not a valid email address.");
         } else {
             this.emailValidation.setAsValid();
         }
-        return emailAddress;
     }
 
     public boolean IsValid() {
