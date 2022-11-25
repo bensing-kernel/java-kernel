@@ -8,7 +8,7 @@ public class Name implements ValueObject<String> {
     private CleanString name;
 
     /**
-     * Name is a value object which generates a single-line string devoid of leading/trailing spaces.
+     * Name generates a single-line string devoid of leading/trailing spaces.
      * @param name The name value
      */
     public Name(String name) {
