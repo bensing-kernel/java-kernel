@@ -2,7 +2,7 @@ package io.bensing.kernel;
 
 public class Name {
 
-    private CleanString name;
+    private final CleanString name;
 
     /**
      * Name is a value object which generates a valid name string.
