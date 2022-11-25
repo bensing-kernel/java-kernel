@@ -1,4 +1,4 @@
-package io.bensing.kernel;
+package io.bensing.kernel.values;
 
 import io.bensing.kernel.values.Person;
 import org.junit.jupiter.api.Assertions;
