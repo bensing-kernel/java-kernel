@@ -2,8 +2,8 @@ package io.bensing.kernel;
 
 public class Person {
 
-    private Name givenName;
-    private Name surname;
+    private final Name givenName;
+    private final Name surname;
 
     Person(String givenName, String surname) {
         this.givenName = new Name(givenName);
