@@ -13,7 +13,7 @@ public class ContentTests {
     public void InstantiateContent() {
         var content = new Content("This is a block of content.\n This is the best block of content ever.\r Does This Work?");
         var expectedValue = "This is a block of content.\n This is the best block of content ever.\r Does This Work?";
-        Assertions.assertEquals(expectedValue, content.getValue());
+        Assertions.assertEquals(expectedValue, content.Value());
     }
 
     @Test
@@ -22,7 +22,7 @@ public class ContentTests {
     public void NoLeadingAndTrailingSpaces() {
         var content = new Content("  There are leading spaces.\n\r There are also trailing spaces.   ");
         var expectedValue = "There are leading spaces.\n\r There are also trailing spaces.";
-        Assertions.assertEquals(expectedValue, content.getValue());
+        Assertions.assertEquals(expectedValue, content.Value());
     }
 
     @Test
@@ -31,6 +31,6 @@ public class ContentTests {
     public void NoLeadingAndTrailingReturns() {
         var content = new Content("\nThere are leading spaces.\n\r There are also trailing spaces.\r");
         var expectedValue = "There are leading spaces.\n\r There are also trailing spaces.";
-        Assertions.assertEquals(expectedValue, content.getValue());
+        Assertions.assertEquals(expectedValue, content.Value());
     }
 }

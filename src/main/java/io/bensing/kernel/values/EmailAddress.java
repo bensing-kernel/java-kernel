@@ -31,9 +31,9 @@ public class EmailAddress implements ValueObject<String>, Validatable, Comparabl
         return this.emailValidation.getValidationMessage();
     }
     public boolean Equals(EmailAddress email) {
-        return this.emailAddress.toString().equals(email.getValue());
+        return this.emailAddress.toString().equals(email.Value());
     }
-    public String getValue() {
+    public String Value() {
         return this.emailAddress.toString();
     }
     private void setEmailAddress(String emailAddress) {

@@ -13,7 +13,7 @@ public class TitleTests {
     public void InstantiateName() {
         var surname = new Title("Bill");
 
-        Assertions.assertEquals(surname.getValue(), "Bill");
+        Assertions.assertEquals(surname.Value(), "Bill");
     }
 
     @Test
@@ -22,7 +22,7 @@ public class TitleTests {
     public void NullInputIntoEmptyString() {
         var surname = new Title(null);
 
-        Assertions.assertEquals(surname.getValue(), "");
+        Assertions.assertEquals(surname.Value(), "");
     }
 
     @Test
@@ -31,7 +31,7 @@ public class TitleTests {
     public void RemoveLineBreaks() {
         var surname = new Title("Two\nWords\r");
 
-        Assertions.assertEquals("TwoWords", surname.getValue());
+        Assertions.assertEquals("TwoWords", surname.Value());
     }
 
 }

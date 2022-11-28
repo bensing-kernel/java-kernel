@@ -15,7 +15,7 @@ public class Content implements ValueObject<String> {
         this.content = new CleanString(content);
     }
 
-    public String getValue() {
+    public String Value() {
         return this.content.toString();
     }
 

@@ -15,7 +15,7 @@ public class Title implements ValueObject<String> {
         this.name = new CleanString(name);
         this.name = new CleanString(this.removeLineBreaks(this.name.toString()));
     }
-    public String getValue() {
+    public String Value() {
         return this.name.toString();
     }
     private String removeLineBreaks(String name) {
