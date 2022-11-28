@@ -1,6 +1,5 @@
 package io.bensing.kernel.values;
 
-import io.bensing.kernel.values.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -14,8 +13,8 @@ public class PersonTests {
     public void InstantiatePerson() {
         var person = new Person("Bill", "Bensing");
 
-        Assertions.assertEquals(person.getGivenName(), "Bill");
-        Assertions.assertEquals(person.getSurname(), "Bensing");
+        Assertions.assertEquals(person.GivenName(), "Bill");
+        Assertions.assertEquals(person.Surname(), "Bensing");
     }
 
     @Test
@@ -24,7 +23,7 @@ public class PersonTests {
     public void GetFullName() {
         var person = new Person("Bill", "Bensing");
 
-        Assertions.assertEquals(person.getFullName(), "Bill Bensing");
+        Assertions.assertEquals(person.FullName(), "Bill Bensing");
     }
 
 }

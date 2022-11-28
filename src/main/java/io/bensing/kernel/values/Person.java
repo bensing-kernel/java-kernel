@@ -10,16 +10,16 @@ public class Person {
         this.surname = new Title(surname);
     }
 
-    public String getGivenName() {
+    public String GivenName() {
         return this.givenName.Value();
     }
 
-    public String getSurname() {
+    public String Surname() {
         return this.surname.Value();
     }
 
-    public String getFullName() {
-        return this.getGivenName() + " " + this.getSurname();
+    public String FullName() {
+        return this.GivenName() + " " + this.Surname();
     }
 
 }
