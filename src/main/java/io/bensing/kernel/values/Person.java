@@ -1,6 +1,8 @@
 package io.bensing.kernel.values;
 
-public class Person {
+import io.bensing.kernel.interfaces.Comparable;
+
+public class Person implements Comparable<Person> {
 
     private final Title givenName;
     private final Title surname;
@@ -22,4 +24,9 @@ public class Person {
         return this.GivenName() + " " + this.Surname();
     }
 
+    public boolean Equals(Person person) {
+        var sameGiven = this.givenName.Value() == person.GivenName();
+        var sameSurname = this.surname.Value() == person.Surname();
+        return sameSurname && sameGiven;
+    }
 }
