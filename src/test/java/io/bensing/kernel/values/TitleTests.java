@@ -34,4 +34,22 @@ public class TitleTests {
         Assertions.assertEquals("TwoWords", surname.Value());
     }
 
+    @Test
+    @Tag("Small")
+    @DisplayName("Two (2) of the same Titles equal.")
+    public void TitlesEqual() {
+        var t1 = new Title("Bill");
+        var t2 = new Title("Bill");
+        Assertions.assertTrue(t1.Equals(t2));
+    }
+
+    @Test
+    @Tag("Small")
+    @DisplayName("Two (2) differing Titles do not equal.")
+    public void TitlesDoNotEqual() {
+        var t1 = new Title("Bill");
+        var t2 = new Title("Bensing");
+        Assertions.assertFalse(t1.Equals(t2));
+    }
+
 }

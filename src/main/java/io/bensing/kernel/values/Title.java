@@ -1,9 +1,10 @@
 package io.bensing.kernel.values;
 
 import io.bensing.kernel.CleanString;
+import io.bensing.kernel.interfaces.Comparable;
 import io.bensing.kernel.interfaces.ValueObject;
 
-public class Title implements ValueObject<String> {
+public class Title implements ValueObject<String>, Comparable<Title> {
 
     private CleanString name;
 
@@ -23,5 +24,7 @@ public class Title implements ValueObject<String> {
         name = name.replace("\r", "");
         return name;
     }
-
+    public boolean Equals(Title title) {
+        return this.name.toString() == title.name.toString();
+    }
 }
