@@ -1,9 +1,10 @@
 package io.bensing.kernel.values;
 
 import io.bensing.kernel.CleanString;
+import io.bensing.kernel.interfaces.Comparable;
 import io.bensing.kernel.interfaces.ValueObject;
 
-public class Content implements ValueObject<String> {
+public class Content implements ValueObject<String>, Comparable<Content> {
 
     private final CleanString content;
 
@@ -19,4 +20,7 @@ public class Content implements ValueObject<String> {
         return this.content.toString();
     }
 
+    public boolean Equals(Content content) {
+        return this.Value().equals(content.Value());
+    }
 }

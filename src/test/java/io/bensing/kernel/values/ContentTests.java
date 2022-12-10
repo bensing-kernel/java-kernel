@@ -33,4 +33,23 @@ public class ContentTests {
         var expectedValue = "There are leading spaces.\n\r There are also trailing spaces.";
         Assertions.assertEquals(expectedValue, content.Value());
     }
+
+    @Test
+    @Tag("Small")
+    @DisplayName("Two (2) same Content objects are equal.")
+    public void ContentEquals() {
+        var content1 = new Content("The same content.");
+        var content2 = new Content("The same content.");
+        Assertions.assertTrue(content1.Equals(content2));
+    }
+    @Test
+    @Tag("Small")
+    @DisplayName("Two (2) differing Content objects do not equal.")
+    public void ContentDoNotEqual() {
+        var content1 = new Content("The first content.");
+        var content2 = new Content("The second content.");
+        Assertions.assertFalse(content1.Equals(content2));
+    }
+
+
 }
