@@ -2,8 +2,11 @@
 
 name: Java Kernel - Release Workflow
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - 'main'
+#  release:
+#    types: [published]
 jobs:
   publish:
     runs-on: ubuntu-latest
