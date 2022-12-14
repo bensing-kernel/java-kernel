@@ -1,5 +1,6 @@
-package io.bensing.kernel;
+package io.bensing.kernel.strings;
 
+import io.bensing.kernel.strings.CleanString;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

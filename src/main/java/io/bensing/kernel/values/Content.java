@@ -1,6 +1,6 @@
 package io.bensing.kernel.values;
 
-import io.bensing.kernel.CleanString;
+import io.bensing.kernel.strings.CleanString;
 import io.bensing.kernel.interfaces.Comparable;
 import io.bensing.kernel.interfaces.ValueObject;
 
