@@ -5,6 +5,7 @@ plugins {
 }
 
 group 'io.bensing'
+artifactId 'kernel'
 version '0.0.1-SNAPSHOT'
 
 repositories {
@@ -29,7 +30,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId = group
-            artifactId = name
+            artifactId = artifactId
             version = version
 
             from components.java
