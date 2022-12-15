@@ -1,7 +1,8 @@
 plugins {
     id 'java'
     id 'com.adarshr.test-logger' version '3.2.0'
-    id 'maven-publish'
+    id "maven-publish"
+    id "com.google.cloud.artifactregistry.gradle-plugin" version "2.1.4"
 }
 
 group 'io.bensing'
@@ -9,6 +10,11 @@ version '0.0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven {
+        def snapshotURL = "artifactregistry://us-east1-maven.pkg.dev/bensing-io/snapshots"
+        def releaseURL = "artifactregistry://us-east1-maven.pkg.dev/bensing-io/releases"
+        url version.endsWith('SNAPSHOT') ? snapshotURL : releaseURL
+    }
 }
 
 dependencies {
@@ -26,6 +32,14 @@ testlogger {
 }
 
 publishing {
+    repositories {
+        maven {
+            def snapshotURL = "artifactregistry://us-east1-maven.pkg.dev/bensing-io/snapshots"
+            def releaseURL = "artifactregistry://us-east1-maven.pkg.dev/bensing-io/releases"
+            url version.endsWith('SNAPSHOT') ? snapshotURL : releaseURL
+        }
+    }
+
     publications {
         maven(MavenPublication) {
             groupId = group
@@ -36,14 +50,4 @@ publishing {
         }
     }
 
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = "https://maven.pkg.github.com/bensing-kernel/java-kernel"
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
 }
