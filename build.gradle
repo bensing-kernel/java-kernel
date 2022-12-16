@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'java-library'
     id 'com.adarshr.test-logger' version '3.2.0'
     id "maven-publish"
     id "com.google.cloud.artifactregistry.gradle-plugin" version "2.2.0"
@@ -7,6 +7,11 @@ plugins {
 
 group 'io.bensing'
 version '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility 16
+    targetCompatibility 16
+}
 
 repositories {
     mavenCentral()
