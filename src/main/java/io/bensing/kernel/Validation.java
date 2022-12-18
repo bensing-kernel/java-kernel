@@ -15,8 +15,8 @@ public class Validation implements Validatable {
     public void AddMessage(String message) {
         this.messages.add(message);
     }
-    public void IncludeMessagesFrom(Validation validation) {
-        this.messages.addAll(validation.ValidationMessages());
+    public void IncludeMessagesFrom(ArrayList<String> messages) {
+        this.messages.addAll(messages);
     }
 
     public boolean IsValid() {

@@ -65,7 +65,7 @@ public class ValidationTests {
 
         var validation2 = new Validation();
         validation2.AddMessage("The Second Validation");
-        validation2.IncludeMessagesFrom(validation1);
+        validation2.IncludeMessagesFrom(validation1.ValidationMessages());
 
         Assertions.assertEquals(6, validation2.ValidationMessageCount());
         Assertions.assertTrue(validation2.ValidationMessages().contains("Validation Message 1"),
