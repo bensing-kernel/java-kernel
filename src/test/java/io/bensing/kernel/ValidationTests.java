@@ -52,5 +52,35 @@ public class ValidationTests {
         Assertions.assertTrue(validation.ValidationMessages().contains("Validation Message 5"));
     }
 
+    @Test
+    @Tag("Small")
+    @DisplayName("A messages from one validation to another validation")
+    public void AddManyValidationMessagesFromAnotherValidation() {
+        var validation1 = new Validation();
+        validation1.AddMessage("Validation Message 1");
+        validation1.AddMessage("Validation Message 2");
+        validation1.AddMessage("Validation Message 3");
+        validation1.AddMessage("Validation Message 4");
+        validation1.AddMessage("Validation Message 5");
+
+        var validation2 = new Validation();
+        validation2.AddMessage("The Second Validation");
+        validation2.IncludeMessagesFrom(validation1);
+
+        Assertions.assertEquals(6, validation2.ValidationMessageCount());
+        Assertions.assertTrue(validation2.ValidationMessages().contains("Validation Message 1"),
+                "An expected validation message was not found.");
+        Assertions.assertTrue(validation2.ValidationMessages().contains("Validation Message 2"),
+                "An expected validation message was not found.");
+        Assertions.assertTrue(validation2.ValidationMessages().contains("Validation Message 3"),
+                "An expected validation message was not found.");
+        Assertions.assertTrue(validation2.ValidationMessages().contains("Validation Message 4"),
+                "An expected validation message was not found.");
+        Assertions.assertTrue(validation2.ValidationMessages().contains("Validation Message 5"),
+                "An expected validation message was not found.");
+        Assertions.assertTrue(validation2.ValidationMessages().contains("The Second Validation"),
+                "An expected validation message was not found.");
+    }
+
 
 }
