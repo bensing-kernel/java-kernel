@@ -1,6 +1,11 @@
 package io.bensing.kernel.interfaces;
 
+import java.util.ArrayList;
+
 public interface Validatable {
+
     boolean IsValid();
-    String ValidationMessage();
+    boolean IsInvalid();
+    ArrayList<String> ValidationMessages();
+    int ValidationMessageCount();
 }

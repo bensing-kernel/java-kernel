@@ -1,36 +1,32 @@
 package io.bensing.kernel;
 
-public class Validation {
+import io.bensing.kernel.interfaces.Validatable;
 
-    private boolean valid;
-    private String message = "";
+import java.util.ArrayList;
 
-    public Validation() { }
+public class Validation implements Validatable {
 
-    public void setAsValid() {
-        this.message = "";
-        this.valid = true;
+    private final ArrayList<String> messages;
+
+    public Validation() {
+        this.messages = new ArrayList<String>();
     }
 
-    public void setAsInvalid(String message) {
-        this.message = message;
-        this.valid = false;
+    public void AddMessage(String message) {
+        this.messages.add(message);
     }
 
-    public void Reset() {
-        this.setAsInvalid("");
+    public boolean IsValid() {
+        return this.ValidationMessageCount() == 0;
     }
-
-    public boolean isValid() {
-        return this.valid;
+    public boolean IsInvalid() {
+        return !this.IsValid();
     }
-
-    public boolean isInvalid() {
-        return !this.isValid();
+    public ArrayList<String> ValidationMessages() {
+        return this.messages;
     }
-
-    public String getValidationMessage() {
-        return this.message;
+    public int ValidationMessageCount() {
+        return this.messages.size();
     }
 
 }
