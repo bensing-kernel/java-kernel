@@ -12,8 +12,10 @@ public class EmailAddressTests {
     @DisplayName("Successfully instantiate EmailAddress")
     public void InstantiateEmailAddress() {
         var emailAddress = new EmailAddress("some.person@gmail.com");
-        Assertions.assertEquals("some.person@gmail.com", emailAddress.Value());
-        Assertions.assertTrue(emailAddress.IsValid());
+        Assertions.assertEquals("some.person@gmail.com", emailAddress.Value(),
+                "The expected email address value was not returned.");
+        Assertions.assertTrue(emailAddress.IsValid(), "Expected IsValid to be 'true'.");
+        Assertions.assertFalse(emailAddress.IsInvalid(), "Expected IsInvalid to be 'false'.");
     }
 
     @Test
@@ -22,8 +24,10 @@ public class EmailAddressTests {
     public void CheckForInvalidEmailAddress() {
         var emailAddress = new EmailAddress(".person@gmail.com");
         var expectedMessage = "'.person@gmail.com' is not a valid email address.";
-        Assertions.assertFalse(emailAddress.IsValid());
-        Assertions.assertEquals(expectedMessage, emailAddress.ValidationMessage());
+        Assertions.assertFalse(emailAddress.IsValid(), "Expected IsValid to be 'false'.");
+        Assertions.assertTrue(emailAddress.IsInvalid(), "Expected IsInvalid to be 'true'.");
+        Assertions.assertTrue(emailAddress.ValidationMessages().contains(expectedMessage),
+                "The expected validation message was not returned.");
     }
 
     @Test
@@ -32,7 +36,7 @@ public class EmailAddressTests {
     public void EmailAddressesEqual() {
         var email1 = new EmailAddress("hello@gmail.com");
         var email2 = new EmailAddress("hello@gmail.com");
-        Assertions.assertTrue(email1.Equals(email2));
+        Assertions.assertTrue(email1.Equals(email2), "Expected both email addresses TO EQUAL each other.");
     }
 
     @Test
@@ -41,7 +45,7 @@ public class EmailAddressTests {
     public void EmailAddressesDoNotEqual() {
         var email1 = new EmailAddress("firstEmail@gmail.com");
         var email2 = new EmailAddress("secondEmail@gmail.com");
-        Assertions.assertFalse(email1.Equals(email2));
+        Assertions.assertFalse(email1.Equals(email2), "Expected both email addresses TO NOT EQUAL each other.");
     }
 
 }

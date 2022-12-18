@@ -6,6 +6,7 @@ import io.bensing.kernel.interfaces.Comparable;
 import io.bensing.kernel.interfaces.Validatable;
 import io.bensing.kernel.interfaces.ValueObject;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class EmailAddress implements ValueObject<String>, Validatable, Comparable<EmailAddress> {
@@ -13,7 +14,7 @@ public class EmailAddress implements ValueObject<String>, Validatable, Comparabl
     private static final String emailRegex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(emailRegex, Pattern.CASE_INSENSITIVE);
     private CleanString emailAddress;
-    private final Validation emailValidation;
+    private Validation emailValidation;
 
     /***
      * Creates an Email Address compliant with RFC 5322 standards.
@@ -22,32 +23,38 @@ public class EmailAddress implements ValueObject<String>, Validatable, Comparabl
      */
     public EmailAddress(String emailAddress)  {
         this.setEmailAddress(emailAddress);
-        this.emailValidation = this.validate(this.emailAddress.toString());
+        this.validate();
     }
+
     public boolean IsValid() {
-        return this.emailValidation.isValid();
+        return this.emailValidation.IsValid();
     }
-    public String ValidationMessage() {
-        return this.emailValidation.getValidationMessage();
+    public boolean IsInvalid() {
+        return this.emailValidation.IsInvalid();
     }
+    public ArrayList<String> ValidationMessages() {
+        return this.emailValidation.ValidationMessages();
+    }
+    public int ValidationMessageCount() {
+        return this.emailValidation.ValidationMessageCount();
+    }
+
     public boolean Equals(EmailAddress email) {
         return this.emailAddress.toString().equals(email.Value());
     }
     public String Value() {
         return this.emailAddress.toString();
     }
+
     private void setEmailAddress(String emailAddress) {
         this.emailAddress = new CleanString(emailAddress);
     }
-    private Validation validate(String emailAddress) {
-        var isValid = EMAIL_PATTERN.matcher(emailAddress).find();
-        var validation = new Validation();
+    private void validate() {
+        this.emailValidation = new Validation();
+        var isValid = EMAIL_PATTERN.matcher(this.emailAddress.toString()).find();
         if (!isValid) {
-            validation.setAsInvalid("'" + emailAddress + "' is not a valid email address.");
-        } else {
-            validation.setAsValid();
+            this.emailValidation.AddMessage("'" + emailAddress + "' is not a valid email address.");
         }
-        return validation;
     }
 
 
