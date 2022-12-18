@@ -15,7 +15,6 @@ public class ValidationTests {
         Assertions.assertTrue(validation.IsValid());
         Assertions.assertFalse(validation.IsInvalid());
         Assertions.assertEquals(0, validation.ValidationMessages().size());
-        Assertions.assertEquals(0, validation.ValidationMessageCount());
     }
 
     @Test
@@ -27,7 +26,7 @@ public class ValidationTests {
         Assertions.assertTrue(validation.IsInvalid());
         Assertions.assertFalse(validation.IsValid());
 
-        Assertions.assertEquals(1, validation.ValidationMessageCount());
+        Assertions.assertEquals(1, validation.ValidationMessages().size());
         Assertions.assertTrue(validation.ValidationMessages().contains("This is invalid because I said so!"));
     }
 
@@ -44,7 +43,7 @@ public class ValidationTests {
         Assertions.assertTrue(validation.IsInvalid());
         Assertions.assertFalse(validation.IsValid());
 
-        Assertions.assertEquals(5, validation.ValidationMessageCount());
+        Assertions.assertEquals(5, validation.ValidationMessages().size());
         Assertions.assertTrue(validation.ValidationMessages().contains("Validation Message 1"));
         Assertions.assertTrue(validation.ValidationMessages().contains("Validation Message 2"));
         Assertions.assertTrue(validation.ValidationMessages().contains("Validation Message 3"));
@@ -67,7 +66,7 @@ public class ValidationTests {
         validation2.AddMessage("The Second Validation");
         validation2.IncludeMessagesFrom(validation1.ValidationMessages());
 
-        Assertions.assertEquals(6, validation2.ValidationMessageCount());
+        Assertions.assertEquals(6, validation2.ValidationMessages().size());
         Assertions.assertTrue(validation2.ValidationMessages().contains("Validation Message 1"),
                 "An expected validation message was not found.");
         Assertions.assertTrue(validation2.ValidationMessages().contains("Validation Message 2"),

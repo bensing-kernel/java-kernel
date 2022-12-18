@@ -35,9 +35,6 @@ public class EmailAddress implements ValueObject<String>, Validatable, Comparabl
     public ArrayList<String> ValidationMessages() {
         return this.emailValidation.ValidationMessages();
     }
-    public int ValidationMessageCount() {
-        return this.emailValidation.ValidationMessageCount();
-    }
 
     public boolean Equals(EmailAddress email) {
         return this.emailAddress.toString().equals(email.Value());

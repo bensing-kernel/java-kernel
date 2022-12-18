@@ -15,21 +15,21 @@ public class Validation implements Validatable {
     public void AddMessage(String message) {
         this.messages.add(message);
     }
+
     public void IncludeMessagesFrom(ArrayList<String> messages) {
         this.messages.addAll(messages);
     }
 
     public boolean IsValid() {
-        return this.ValidationMessageCount() == 0;
+        return this.messages.size() == 0;
     }
+
     public boolean IsInvalid() {
         return !this.IsValid();
     }
+
     public ArrayList<String> ValidationMessages() {
         return this.messages;
-    }
-    public int ValidationMessageCount() {
-        return this.messages.size();
     }
 
 }

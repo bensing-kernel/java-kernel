@@ -7,5 +7,4 @@ public interface Validatable {
     boolean IsValid();
     boolean IsInvalid();
     ArrayList<String> ValidationMessages();
-    int ValidationMessageCount();
 }
