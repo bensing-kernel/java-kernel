@@ -29,7 +29,7 @@ public class Validation implements Validatable {
     }
 
     public ArrayList<String> ValidationMessages() {
-        return this.messages;
+        return new ArrayList<>(this.messages);
     }
 
 }
