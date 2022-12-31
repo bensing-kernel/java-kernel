@@ -1,7 +1,9 @@
 package io.bensing.kernel.interfaces;
 
-import io.bensing.kernel.Outcome;
+import java.util.ArrayList;
 
-public interface Result<T> extends Outcome, ValueObject<T> {
-
+public interface Result {
+    boolean WasSuccess();
+    boolean HasError();
+    ArrayList<String> Issues();
 }
