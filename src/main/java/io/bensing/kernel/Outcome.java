@@ -1,6 +1,7 @@
 package io.bensing.kernel;
 
 import io.bensing.kernel.interfaces.Result;
+import io.bensing.kernel.interfaces.Validatable;
 
 import java.util.ArrayList;
 
@@ -69,6 +70,11 @@ public class Outcome implements Result {
     public void ReportIssue(String issue) {
         this.setErrorGate();
         this.issues.add(issue);
+    }
+
+    public void MakeIssuesFrom(Validatable validatable) {
+        if (validatable == null ){ return; }
+        validatable.ValidationMessages().forEach(this::ReportIssue);
     }
 
     /**

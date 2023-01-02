@@ -109,6 +109,29 @@ public class Outcome_Tests {
                 "The outcome does not contain the expected issue.");
     }
 
+    @Test
+    @Tag("small")
+    @DisplayName("Add error messages from a validatable object to the issues.")
+    public void AddErrorMessagesFromValidatable() {
+        var validation = new Validation();
+        validation.AddMessage("The first validation message.");
+        validation.AddMessage("The second validation message.");
+
+        var outcome = new Outcome.Builder().Failure("A failure message.");
+
+        outcome.MakeIssuesFrom(validation);
+
+        Assertions.assertFalse(outcome.IsSuccessful(), "Expected IsSuccessful() to be false.");
+        Assertions.assertTrue(outcome.HasError(), "Expected HasError() to be true.");
+        Assertions.assertEquals(3, outcome.Issues().size(), "Expected there to be three issues.");
+        Assertions.assertTrue(outcome.Issues().contains("The first validation message."),
+                "The outcome does not contain the expected issue: [The first validation message.].");
+        Assertions.assertTrue(outcome.Issues().contains("The second validation message."),
+                "The outcome does not contain the expected issue: [The second validation message.].");
+        Assertions.assertTrue(outcome.Issues().contains("A failure message."),
+                "The outcome does not contain the expected issue: [A failure message.].");
+    }
+
 
 
 }
