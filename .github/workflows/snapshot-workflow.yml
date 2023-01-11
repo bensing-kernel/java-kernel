@@ -86,3 +86,13 @@ jobs:
             --environment io-bensing-maven-snapshots \
             --owner Bensing-IO \
             --pipeline bensing-ledger
+
+      - name: Report deployment approval
+        run: |
+          kosli pipeline approval report ./build/libs \
+            --artifact-type dir \
+            --description "Bensing Ledger - Deployment Approval" \
+            --newest-commit $(git rev-parse HEAD) \
+            --oldest-commit $(git rev-parse HEAD) \
+            --owner Bensing-IO \
+            --pipeline bensing-ledger 
