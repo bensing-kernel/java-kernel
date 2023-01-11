@@ -53,14 +53,18 @@ jobs:
         run: |
           kosli pipeline artifact report evidence test ./build/test-results \
             --artifact-type dir \
+            --results-dir ./build/test-results \
+            --evidence-type build-test-results \
             --description 'The gradle build/test-results directory' \
             --owner Bensing-IO \
             --pipeline bensing-ledger
 
       - name: Collect test artifacts - [./build/reports] directory
         run: |
-          kosli pipeline artifact report evidence test ./build/reports \
+          kosli pipeline artifact report evidence test \
             --artifact-type dir \
+            --results-dir ./build/reports \
+            --evidence-type build-reports \
             --description 'The gradle build/reports directory' \
             --owner Bensing-IO \
             --pipeline bensing-ledger
@@ -70,11 +74,19 @@ jobs:
         with:
           arguments: publish
 
-#      - name: Log the deployment to Kosli
-#        run: |
-#          kosli expect deployment ./build/libs \
-#            --artifact-type dir \
-#            --description 'The Bensing Ledger JAR Library' \
-#            --environment io-bensing-maven-snapshots \
-#            --owner Bensing-IO \
-#            --pipeline bensing-ledger
+      - name: Collect the built JAR artifact9s) - [./build/libs] directory
+        run: |
+          kosli pipeline artifact report creation ./build/libs \
+            --artifact-type dir \
+            --description 'The gradle build/libs directory' \
+            --owner Bensing-IO \
+            --pipeline bensing-ledger
+
+      - name: Log the JAR deployment
+        run: |
+          kosli expect deployment ./build/libs \
+            --artifact-type dir \
+            --description 'The Bensing Ledger JAR Library' \
+            --environment io-bensing-maven-snapshots \
+            --owner Bensing-IO \
+            --pipeline bensing-ledger
