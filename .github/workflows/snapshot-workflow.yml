@@ -23,6 +23,9 @@ jobs:
       - name: Kosli - Declare a pipeline
         run: kosli pipeline declare --pipeline bensing-ledger -t pull-request,artifact,test
 
+      - name: Check a Pull Request exists for this commit
+        run: kosli assert github-pullrequest
+
       - name: Authenticate to Google Cloud Console
         uses: google-github-actions/auth@v1
         with:
