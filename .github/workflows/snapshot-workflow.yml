@@ -11,12 +11,17 @@ jobs:
     environment: io-bensing-maven-snapshots
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@main
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
         with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_ARTIFACTORY_SERVICE_ACCOUNT}}
-          export_default_credentials: true
+          credentials_json: '${{ secrets.GCP_ARTIFACTORY_SERVICE_ACCOUNT}}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
+
       - uses: actions/setup-java@v3
         with:
           java-version: '16'
