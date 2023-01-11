@@ -9,10 +9,19 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     environment: io-bensing-maven-snapshots
+    env:
+      KOSLI_API_TOKEN: ${{ secrets.KOSLI_API_TOKEN }}
+      KOSLI_OWNER: ${{ secrets.KOSLI_OWNER}}
     steps:
 
       - name: Checkout source code
         uses: actions/checkout@v3
+
+      - name: Setup Kosli CLI
+        uses: kosli-dev/setup-cli-action@v1
+
+      - name: Kosli - Declare a pipeline
+        run: kosli pipeline declare --pipeline bensing-ledger -t pull-request,artifact,test
 
       - name: Authenticate to Google Cloud Console
         uses: google-github-actions/auth@v1
