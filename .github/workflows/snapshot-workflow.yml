@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: io-bensing-maven-snapshots
     steps:
-      -
+
       - name: Checkout source code
         uses: actions/checkout@v3
 
