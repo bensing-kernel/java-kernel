@@ -46,7 +46,21 @@ jobs:
         with:
           arguments: test
 
+      - name: Collect test artifacts - [./build/test-results] directory
+        run: |
+          kosli pipeline artifact report creation ./build/test-results \
+            --artifact-type dir \
+            --owner Bensing-IO \
+            --pipeline bensing-ledger
+
+      - name: Collect test artifacts - [./build/reports] directory
+        run: |
+          kosli pipeline artifact report creation ./build/reports \
+            --artifact-type dir \
+            --owner Bensing-IO \
+            --pipeline bensing-ledger
+
       - name: Publish package to artifact repository
-        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-        with:
-          arguments: publish
+            uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+            with:
+              arguments: publish
