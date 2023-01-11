@@ -70,7 +70,7 @@ jobs:
         with:
           arguments: publish
 
-      - name: Collect the built JAR artifact9s) - [./build/libs] directory
+      - name: Collect the built JAR artifacts - [./build/libs] directory
         run: |
           kosli pipeline artifact report creation ./build/libs \
             --artifact-type dir \
