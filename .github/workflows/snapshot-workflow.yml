@@ -70,13 +70,16 @@ jobs:
         with:
           arguments: publish
 
-      - name: Collect the built JAR artifacts - [./build/libs] directory
+      - name: Kosli - Report Creation of JAR Artifact
         run: |
-          kosli pipeline artifact report creation ./build/libs \
-            --artifact-type dir \
-            --description 'The gradle build/libs directory' \
-            --owner Bensing-IO \
-            --pipeline bensing-ledger
+          for jar_path in ./build/libs/*.jar; do
+            jar_fileName="$(basename $jar)"   
+            kosli pipeline artifact report creation $jar_path \
+              --artifact-type file \
+              --description $jar_fileName \
+              --owner Bensing-IO \
+              --pipeline bensing-ledger
+          done
 
       - name: Log the JAR deployment
         run: |
