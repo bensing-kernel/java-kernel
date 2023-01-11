@@ -69,3 +69,12 @@ jobs:
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: publish
+
+      - name: Log the deployment to Kosli
+        run: |
+          kosli expect deployment ./build/libs \
+            --artifact-type dir \
+            --description 'The Bensing Ledger JAR Library' \
+            --environment io-bensing-maven-snapshots \
+            --owner Bensing-IO \
+            --pipeline bensing-ledger
