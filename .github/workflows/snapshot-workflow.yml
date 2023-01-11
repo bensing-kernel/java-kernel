@@ -53,7 +53,7 @@ jobs:
         run: |
           kosli pipeline artifact report creation ./build/test-results \
             --artifact-type dir \
-            --description 'The gradle build/test-results directory'
+            --description 'The gradle build/test-results directory' \
             --owner Bensing-IO \
             --pipeline bensing-ledger
 
@@ -61,7 +61,7 @@ jobs:
         run: |
           kosli pipeline artifact report creation ./build/reports \
             --artifact-type dir \
-            --description 'The gradle build/reports directory'
+            --description 'The gradle build/reports directory' \
             --owner Bensing-IO \
             --pipeline bensing-ledger
 
