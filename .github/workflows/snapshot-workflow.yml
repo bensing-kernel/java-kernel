@@ -51,7 +51,7 @@ jobs:
 
       - name: Collect test artifacts - [./build/test-results] directory
         run: |
-          kosli pipeline artifact report evidence test \
+          kosli pipeline artifact report evidence test ./build/test-results \
             --artifact-type dir \
             --results-dir ./build/test-results \
             --evidence-type build-test-results \
@@ -61,7 +61,7 @@ jobs:
 
       - name: Collect test artifacts - [./build/reports] directory
         run: |
-          kosli pipeline artifact report evidence test \
+          kosli pipeline artifact report evidence test ./build/reports \
             --artifact-type dir \
             --results-dir ./build/reports \
             --evidence-type build-reports \
