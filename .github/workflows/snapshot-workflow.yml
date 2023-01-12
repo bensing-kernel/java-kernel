@@ -14,8 +14,8 @@ jobs:
       KOSLI_OWNER: ${{ secrets.KOSLI_OWNER}}
     steps:
 
-      - name: Install Dependency - coreutils
-        run: sudo apt-get -y install coreutils
+      - name: Check if basename exists
+        run: basename
 
       - name: Checkout source code
         uses: actions/checkout@v3
