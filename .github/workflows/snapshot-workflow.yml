@@ -57,14 +57,6 @@ jobs:
             --owner Bensing-IO \
             --pipeline bensing-ledger
 
-      - name: Collect test artifacts - [./build/reports] directory
-        run: |
-          kosli pipeline artifact report creation ./build/reports \
-            --artifact-type dir \
-            --description 'The gradle build/reports directory' \
-            --owner Bensing-IO \
-            --pipeline bensing-ledger
-
       - name: Publish package to artifact repository
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
@@ -81,6 +73,7 @@ jobs:
               --pipeline bensing-ledger
           done
 
+
       - name: Kosli - Log Expected Deployment
         run: |
           for jar_path in ./build/libs/*.jar; do
@@ -92,6 +85,7 @@ jobs:
               --owner Bensing-IO \
               --pipeline bensing-ledger
           done
+
 
       - name: Kosli - Report Deployment Approved
         run: |
