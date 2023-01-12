@@ -92,7 +92,7 @@ jobs:
             kosli environment allowedartifacts add $jar_path \
               --artifact-type file \
               --environment io-bensing-maven-snapshots \
-              --owner Bensing-IO \
+              --owner Bensing-IO 
           done
 
       - name: Kosli - Report Deployment Approved
