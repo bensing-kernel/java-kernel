@@ -91,17 +91,6 @@ jobs:
               --pipeline bensing-ledger
           done
 
-      - name: Kosli - Add Jar to Environment Allow List
-        run: |
-          for jar_path in ./build/libs/*.jar; do
-            jar_fileName="${jar_path##*/}"             
-            kosli environment allowedartifacts add $jar_path \
-              --artifact-type file \
-              --reason 'Ready For Production' \
-              --environment io-bensing-maven-snapshots \
-              --owner Bensing-IO 
-          done
-
       - name: Kosli - Report Deployment Approved
         run: |
           for jar_path in ./build/libs/*.jar; do
