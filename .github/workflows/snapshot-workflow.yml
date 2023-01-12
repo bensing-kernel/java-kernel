@@ -14,9 +14,6 @@ jobs:
       KOSLI_OWNER: ${{ secrets.KOSLI_OWNER}}
     steps:
 
-      - name: Check if basename exists
-        run: basename
-
       - name: Checkout source code
         uses: actions/checkout@v3
 
@@ -76,7 +73,7 @@ jobs:
       - name: Kosli - Report Creation of JAR Artifact
         run: |
           for jar_path in ./build/libs/*.jar; do
-            jar_fileName="$(basename $jar)"   
+            jar_fileName="${jar_path##*/}"   
             kosli pipeline artifact report creation $jar_path \
               --artifact-type file \
               --description $jar_fileName \
