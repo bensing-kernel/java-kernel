@@ -101,7 +101,7 @@ jobs:
               --artifact-type file \
               --description $jar_fileName \
               --newest-commit $(git rev-parse HEAD) \
-              --oldest-commit $(git rev-parse HEAD) \
+              --oldest-commit $(git rev-parse HEAD~1) \
               --owner Bensing-IO \
               --pipeline bensing-ledger 
           done
