@@ -51,10 +51,16 @@ jobs:
 
       - name: Collect test artifacts - [./build/test-results] directory
         run: |
-          kosli pipeline artifact report creation ./build/test-results \
-            --artifact-type dir \
-            --description 'The gradle build/test-results directory' \
+          git_hash="$(git rev-parse --short HEAD)"
+          test_archive_name=unit-test-results-$git_hash
+          find ./build/test-results/test -name "*.xml" | tar -cvzf $test_archive_name.tar.gz -T -
+          
+          kosli pipeline artifact report evidence test $test_archive_name.tar.gz \
+            --artifact-type file \
+            --description $test_archive_name.tar.gz \
+            --evidence-type 'unit test' \
             --owner Bensing-IO \
+            --results-dir 'build/test-results/test/' \
             --pipeline bensing-ledger
 
       - name: Publish package to artifact repository
