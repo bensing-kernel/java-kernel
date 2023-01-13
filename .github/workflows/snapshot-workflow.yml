@@ -96,6 +96,14 @@ jobs:
         with:
           arguments: publish
 
+      - name: Kosli - Report JAR Deployed to Maven Repo.
+        run: |
+          jarPath=(./build/libs/*)
+          jarName="${jarPath##*/}"
+          
+          kosli environment report server io-bensing-maven-snapshots \
+            --path $jarName
+
       - name: Kosli - Report Deployment Approved
         run: |
           jarPath=(./build/libs/*)
