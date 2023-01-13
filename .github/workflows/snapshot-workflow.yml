@@ -16,6 +16,8 @@ jobs:
 
       - name: Checkout source code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 3
 
       - name: Setup Kosli CLI
         uses: kosli-dev/setup-cli-action@v1
@@ -47,59 +49,62 @@ jobs:
       - name: Build & test
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: test
+          arguments: build
+
+      - name: Kosli - Report Creation of JAR Artifact
+        run: |
+          jarPath=(./build/libs/*)
+          jarName="${jarPath##*/}"
+        
+          kosli pipeline artifact report creation $jarPath \
+            --artifact-type file \
+            --description $jarName \
+            --owner Bensing-IO \
+            --pipeline bensing-ledger
 
       - name: Kosli - Collect JUnit test artifacts
         run: |
+          jarPath=(./build/libs/*)
+          jarName="${jarPath##*/}"
+          
           git_hash="$(git rev-parse --short HEAD)"
           test_archive_name=unit-test-results-$git_hash
           find ./build/test-results/test -name "*.xml" | tar -cvzf $test_archive_name.tar.gz -T -
           
-          kosli pipeline artifact report evidence test $test_archive_name.tar.gz \
+          kosli pipeline artifact report evidence test $jarPath \
             --artifact-type file \
             --description $test_archive_name.tar.gz \
-            --evidence-type 'unit test' \
+            --evidence-type 'test' \
             --owner Bensing-IO \
-            --results-dir 'build/test-results/test/' \
+            --results-dir ./build/test-results/test \
             --pipeline bensing-ledger
+
+      - name: Kosli - Log Expected Deployment
+        run: |    
+          jarPath=(./build/libs/*)
+          jarName="${jarPath##*/}"
+          
+          kosli expect deployment $jarPath \
+              --artifact-type file \
+              --description $jarName \
+              --environment io-bensing-maven-snapshots \
+              --owner Bensing-IO \
+              --pipeline bensing-ledger
 
       - name: Publish package to artifact repository
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: publish
 
-      - name: Kosli - Report Creation of JAR Artifact
-        run: |
-          for jar_path in ./build/libs/*.jar; do
-            jar_fileName="${jar_path##*/}"   
-            kosli pipeline artifact report creation $jar_path \
-              --artifact-type file \
-              --description $jar_fileName \
-              --owner Bensing-IO \
-              --pipeline bensing-ledger
-          done
-
-      - name: Kosli - Log Expected Deployment
-        run: |
-          for jar_path in ./build/libs/*.jar; do
-            jar_fileName="${jar_path##*/}"             
-            kosli expect deployment $jar_path \
-              --artifact-type file \
-              --description $jar_fileName \
-              --environment io-bensing-maven-snapshots \
-              --owner Bensing-IO \
-              --pipeline bensing-ledger
-          done
-
       - name: Kosli - Report Deployment Approved
         run: |
-          for jar_path in ./build/libs/*.jar; do
-            jar_fileName="${jar_path##*/}"                       
-            kosli pipeline approval report $jar_path \
-              --artifact-type file \
-              --description $jar_fileName \
-              --newest-commit $(git rev-parse HEAD) \
-              --oldest-commit $(git rev-parse HEAD~1) \
-              --owner Bensing-IO \
-              --pipeline bensing-ledger 
-          done
+          jarPath=(./build/libs/*)
+          jarName="${jarPath##*/}"
+                               
+          kosli pipeline approval report $jarPath \
+            --artifact-type file \
+            --description $jarName \
+            --newest-commit $(git rev-parse HEAD) \
+            --oldest-commit $(git rev-parse HEAD~1) \
+            --owner Bensing-IO \
+            --pipeline bensing-ledger
