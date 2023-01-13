@@ -12,6 +12,8 @@ jobs:
     env:
       KOSLI_API_TOKEN: ${{ secrets.KOSLI_API_TOKEN }}
       KOSLI_OWNER: ${{ secrets.KOSLI_OWNER}}
+      KOSLI_PIPELINE: bensing-ledger
+      KOSLI_ENVIRONMENT: io-bensing-maven-snapshots
     steps:
 
       - name: Checkout source code
@@ -59,8 +61,8 @@ jobs:
           kosli pipeline artifact report creation $jarPath \
             --artifact-type file \
             --description $jarName \
-            --owner Bensing-IO \
-            --pipeline bensing-ledger
+            --owner $KOSLI_OWNER \
+            --pipeline $KOSLI_PIPELINE
 
       - name: Kosli - Collect JUnit test artifacts
         run: |
@@ -75,9 +77,9 @@ jobs:
             --artifact-type file \
             --description $test_archive_name.tar.gz \
             --evidence-type 'test' \
-            --owner Bensing-IO \
+            --owner $KOSLI_OWNER \
             --results-dir ./build/test-results/test \
-            --pipeline bensing-ledger
+            --pipeline $KOSLI_PIPELINE
 
       - name: Kosli - Log Expected Deployment
         run: |    
@@ -87,9 +89,9 @@ jobs:
           kosli expect deployment $jarPath \
               --artifact-type file \
               --description $jarName \
-              --environment io-bensing-maven-snapshots \
-              --owner Bensing-IO \
-              --pipeline bensing-ledger
+              --environment $KOSLI_ENVIRONMENT \
+              --owner $KOSLI_OWNER \
+              --pipeline $KOSLI_PIPELINE
 
       - name: Publish package to artifact repository
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
@@ -114,5 +116,5 @@ jobs:
             --description $jarName \
             --newest-commit $(git rev-parse HEAD) \
             --oldest-commit $(git rev-parse HEAD~1) \
-            --owner Bensing-IO \
-            --pipeline bensing-ledger
+            --owner $KOSLI_OWNER \
+            --pipeline $KOSLI_PIPELINE
