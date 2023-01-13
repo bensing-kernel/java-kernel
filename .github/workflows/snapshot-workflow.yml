@@ -102,7 +102,7 @@ jobs:
           jarName="${jarPath##*/}"
           
           kosli environment report server io-bensing-maven-snapshots \
-            --paths $jarName
+            --paths $jarPath
 
       - name: Kosli - Report Deployment Approved
         run: |
