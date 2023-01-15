@@ -66,7 +66,7 @@ jobs:
           kosli pipeline artifact report evidence github-pullrequest $jarPath \
             --assert \
             --artifact-type file \
-            --name "pull-request"
+            --name "pull-request" \
             --description $jarName \
             --owner $KOSLI_OWNER \
             --pipeline $KOSLI_PIPELINE   
