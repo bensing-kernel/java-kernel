@@ -69,7 +69,7 @@ jobs:
             --evidence-type 'pull-request' \
             --github-token ${{ secrets.GITHUB_TOKEN }} \
             --owner $KOSLI_OWNER \
-            --pipeline $KOSLI_PIPELINE   
+            --pipeline $KOSLI_PIPELINE
 
       - name: Kosli - Collect JUnit test artifacts
         run: |
