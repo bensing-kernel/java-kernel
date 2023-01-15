@@ -58,6 +58,19 @@ jobs:
             --owner $KOSLI_OWNER \
             --pipeline $KOSLI_PIPELINE
 
+      - name: Kosli - Compliance Check - Validate A Pull Request Exists
+        run: |
+          jarPath=(./build/libs/*)
+          jarName="${jarPath##*/}"
+          
+          kosli pipeline artifact report evidence github-pullrequest $jarPath \
+            --assert
+            --artifact-type file \
+            --name "pull-request"
+            --description $jarName \
+            --owner $KOSLI_OWNER \
+            --pipeline $KOSLI_PIPELINE   
+
       - name: Kosli - Collect JUnit test artifacts
         run: |
           jarPath=(./build/libs/*)
