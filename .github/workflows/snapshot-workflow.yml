@@ -64,7 +64,7 @@ jobs:
           jarName="${jarPath##*/}"
           
           kosli pipeline artifact report evidence github-pullrequest $jarPath \
-            --assert
+            --assert \
             --artifact-type file \
             --name "pull-request"
             --description $jarName \
